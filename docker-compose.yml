@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  app:
+    build: .
+    volumes:
+      - .:/var/jenkins_home
+    ports:
+      - "8080:8080"
+      - "50000:50000"
