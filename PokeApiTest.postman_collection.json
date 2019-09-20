@@ -47,9 +47,16 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}pokemon",
+					"raw": "https://pokeapi.co/api/v2/pokemon",
+					"protocol": "https",
 					"host": [
-						"{{url}}pokemon"
+						"pokeapi",
+						"co"
+					],
+					"path": [
+						"api",
+						"v2",
+						"pokemon"
 					],
 					"query": [
 						{
