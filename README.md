@@ -9,7 +9,18 @@ API Tests:​ PokeAPI
 
  *2) Project Scope*
  
-    TODO
+    Get responses on:
+
+     Berries
+     Contests
+     Encounters
+     Evolution
+     Games
+     Items
+     Locations
+     Machines
+     Moves
+     Pokemon
 
  *3) Tecnologies*
 
@@ -20,4 +31,8 @@ API Tests:​ PokeAPI
 
 *4) Run test:*
 
-    TODO
+    instal docker-compose
+    clone the following url: https://github.com/jehcriss42/PokeAPITest.git
+    run sudo docker-compose up
+    Access localhost:8080
+    Run: PokeAPITest
