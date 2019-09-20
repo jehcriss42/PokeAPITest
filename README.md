@@ -22,6 +22,10 @@ API Tests:​ PokeAPI
      Moves
      Pokemon
 
+     Implemented:
+     GET response on Pokemon
+     GET Pokemon By id
+
  *3) Tecnologies*
 
     Postman/Newman
