@@ -6,24 +6,26 @@
 	},
 	"item": [
 		{
-			"name": "GET Pokemon",
+			"name": "GET Berries",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "06d936b7-ac7f-47d6-b7b1-94a2bff3487d",
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
 						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
 							"pm.test(\"Body returned at least 20 results\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"https://pokeapi.co/api/v2/pokemon/1/\")",
-							"    pm.expect(pm.response.text()).to.include(\"https://pokeapi.co/api/v2/pokemon/20/\")",
+							"    pm.expect(jsonData.results.length).to.eql(20);",
 							"});",
 							"",
-							"",
-							""
+							"pm.test(\"Body returned name and url\", function () {",
+							"    jsonData.results.forEach(i => pm.expect(i).to.have.keys(\"name\",\"url\"));",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -31,7 +33,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "90b1c5e7-0eba-4f81-afca-75427edfc96c",
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
 						"exec": [
 							""
 						],
@@ -47,16 +49,212 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://pokeapi.co/api/v2/pokemon",
-					"protocol": "https",
+					"raw": "{{url}}berry",
 					"host": [
-						"pokeapi",
-						"co"
+						"{{url}}berry"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Berries id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var jsonArray = [\"firmness\",\"flavors\",\"growth_time\",\"id\",\"item\",\"max_harvest\",\"name\",",
+							"                 \"natural_gift_power\",\"natural_gift_type\",\"size\",\"smoothness\",\"soil_dryness\"];",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Expect the first id to be returned\", function() {",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Body returned all main property\", function () {",
+							"    jsonArray.forEach(i => pm.expect(jsonData).to.have.property(i))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}berry/:id",
+					"host": [
+						"{{url}}berry"
 					],
 					"path": [
-						"api",
-						"v2",
-						"pokemon"
+						":id"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Berries name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "85c7e9f1-b32e-4ab5-9b5e-6a9e89cf55ca",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var jsonArray = [\"firmness\",\"flavors\",\"growth_time\",\"id\",\"item\",\"max_harvest\",\"name\",",
+							"                 \"natural_gift_power\",\"natural_gift_type\",\"size\",\"smoothness\",\"soil_dryness\"];",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Expect the name to be returned\", function() {",
+							"    pm.expect(jsonData.name).to.eql(\"cheri\");",
+							"});",
+							"",
+							"pm.test(\"Expect the total flavors to be returned\", function() {",
+							"    pm.expect(jsonData.flavors.length).to.eql(5);",
+							"});",
+							"",
+							"pm.test(\"Body returned all main property\", function () {",
+							"    jsonArray.forEach(i => pm.expect(jsonData).to.have.property(i))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c93d0736-73ec-4a06-a234-8e85efadf15e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}berry/:name",
+					"host": [
+						"{{url}}berry"
+					],
+					"path": [
+						":name"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "name",
+							"value": "cheri"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Pokemon",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body returned at least 20 results\", function() {",
+							"    pm.expect(jsonData.results.length).to.eql(20);",
+							"});",
+							"",
+							"pm.test(\"Body returned name and url\", function() {",
+							"    jsonData.results.forEach(i => pm.expect(i).to.have.keys(\"name\",\"url\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}pokemon",
+					"host": [
+						"{{url}}pokemon"
 					],
 					"query": [
 						{
@@ -75,15 +273,24 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "06d936b7-ac7f-47d6-b7b1-94a2bff3487d",
+						"id": "85c7e9f1-b32e-4ab5-9b5e-6a9e89cf55ca",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
+							"var jsonData = pm.response.json();",
+							"var jsonArray = [\"abilities\",\"base_experience\",\"forms\",\"game_indices\",\"height\",",
+							"             \"held_items\", \"id\",\"is_default\",\"location_area_encounters\",\"moves\",",
+							"             \"name\",\"order\",\"species\",\"sprites\",\"stats\",\"types\",\"weight\"];",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Expect at least 964 pokemon to be returned\", function () {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData.name).to.eql(\"bulbasaur\");",
+							"pm.test(\"Expect the first id to be returned\", function() {",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Body returned all main property\", function () {",
+							"    jsonArray.forEach(i => pm.expect(jsonData).to.have.property(i))",
 							"});"
 						],
 						"type": "text/javascript"
@@ -92,7 +299,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "90b1c5e7-0eba-4f81-afca-75427edfc96c",
+						"id": "c93d0736-73ec-4a06-a234-8e85efadf15e",
 						"exec": [
 							""
 						],
@@ -108,23 +315,1269 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://pokeapi.co/api/v2/pokemon/1",
-					"protocol": "https",
+					"raw": "{{url}}pokemon/:id",
 					"host": [
-						"pokeapi",
-						"co"
+						"{{url}}pokemon"
 					],
 					"path": [
-						"api",
-						"v2",
-						"pokemon",
-						"1"
+						":id"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Pokemon name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "85c7e9f1-b32e-4ab5-9b5e-6a9e89cf55ca",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var jsonArray = [\"abilities\",\"base_experience\",\"forms\",\"game_indices\",\"height\",",
+							"             \"held_items\", \"id\",\"is_default\",\"location_area_encounters\",\"moves\",",
+							"             \"name\",\"order\",\"species\",\"sprites\",\"stats\",\"types\",\"weight\"];",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Expect the name to be returned\", function() {",
+							"    pm.expect(jsonData.name).to.eql(\"bulbasaur\");",
+							"});",
+							"",
+							"pm.test(\"Expect the ability to be returned\", function() {",
+							"    pm.expect(jsonData.abilities[0].ability.name).to.eql(\"chlorophyll\");",
+							"    pm.expect(jsonData.abilities[1].ability.name).to.eql(\"overgrow\");",
+							"});",
+							"",
+							"pm.test(\"Expect the ability to be returned\", function() {",
+							"    pm.expect(jsonData.abilities[0].ability.name).to.eql(\"chlorophyll\");",
+							"    pm.expect(jsonData.abilities[1].ability.name).to.eql(\"overgrow\");",
+							"});",
+							"",
+							"console.log(jsonData.game_indices.length)",
+							"",
+							"pm.test(\"Expect the total game index to be returned\", function() {",
+							"    pm.expect(jsonData.game_indices.length).to.eql(20);",
+							"});",
+							"",
+							"pm.test(\"Body returned all main property\", function () {",
+							"    jsonArray.forEach(i => pm.expect(jsonData).to.have.property(i))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c93d0736-73ec-4a06-a234-8e85efadf15e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}pokemon/:name",
+					"host": [
+						"{{url}}pokemon"
+					],
+					"path": [
+						":name"
 					],
 					"query": [
 						{
 							"key": "",
 							"value": "",
 							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "name",
+							"value": "bulbasaur"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Contests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body returned at least 5 results\", function () {",
+							"    pm.expect(jsonData.results.length).to.eql(5);",
+							"});",
+							"",
+							"pm.test(\"Body returned name and url\", function () {",
+							"    jsonData.results.forEach(i => pm.expect(i).to.have.keys(\"name\",\"url\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}contest-type",
+					"host": [
+						"{{url}}contest-type"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Contest id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var jsonArray = [\"berry_flavor\",\"id\",\"name\",\"names\"];",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Expect the first id to be returned\", function() {",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Body returned all main property\", function () {",
+							"    jsonArray.forEach(i => pm.expect(jsonData).to.have.property(i))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}contest-type/:id",
+					"host": [
+						"{{url}}contest-type"
+					],
+					"path": [
+						":id"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Encounters",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body returned at least 17 results\", function () {",
+							"    pm.expect(jsonData.results.length).to.eql(17);",
+							"});",
+							"",
+							"pm.test(\"Body returned name and url\", function () {",
+							"    jsonData.results.forEach(i => pm.expect(i).to.have.keys(\"name\",\"url\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}encounter-method",
+					"host": [
+						"{{url}}encounter-method"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Encounters id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var jsonArray = [\"id\",\"name\",\"names\",\"order\"];",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Expect the first id to be returned\", function() {",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Body returned all main property\", function () {",
+							"    jsonArray.forEach(i => pm.expect(jsonData).to.have.property(i))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}encounter-method/:id",
+					"host": [
+						"{{url}}encounter-method"
+					],
+					"path": [
+						":id"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Evolution",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body returned at least 20 results\", function () {",
+							"    pm.expect(jsonData.results.length).to.eql(20);",
+							"});",
+							"",
+							"pm.test(\"Body returned name and url\", function () {",
+							"    jsonData.results.forEach(i => pm.expect(i).to.have.key(\"url\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}evolution-chain",
+					"host": [
+						"{{url}}evolution-chain"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Evolution id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var jsonArray = [\"baby_trigger_item\",\"chain\",\"id\"];",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Expect the first id to be returned\", function() {",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Body returned all main property\", function () {",
+							"    jsonArray.forEach(i => pm.expect(jsonData).to.have.property(i))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}evolution-chain/:id",
+					"host": [
+						"{{url}}evolution-chain"
+					],
+					"path": [
+						":id"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Games",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body returned at least 7 results\", function () {",
+							"    pm.expect(jsonData.results.length).to.eql(7);",
+							"});",
+							"",
+							"pm.test(\"Body returned name and url\", function () {",
+							"    jsonData.results.forEach(i => pm.expect(i).to.have.keys(\"name\",\"url\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}generation",
+					"host": [
+						"{{url}}generation"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Games id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var jsonArray = [\"abilities\",\"id\",\"main_region\",\"moves\",\"name\",\"names\",",
+							"                 \"pokemon_species\",\"types\",\"version_groups\"];",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Expect the first id to be returned\", function() {",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Body returned all main property\", function () {",
+							"    jsonArray.forEach(i => pm.expect(jsonData).to.have.property(i))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}generation/:id",
+					"host": [
+						"{{url}}generation"
+					],
+					"path": [
+						":id"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body returned at least 20 results\", function () {",
+							"    pm.expect(jsonData.results.length).to.eql(20);",
+							"});",
+							"",
+							"pm.test(\"Body returned name and url\", function () {",
+							"    jsonData.results.forEach(i => pm.expect(i).to.have.keys(\"name\",\"url\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}item",
+					"host": [
+						"{{url}}item"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Items id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var jsonArray = [\"attributes\",\"baby_trigger_for\",\"category\",\"cost\",\"effect_entries\",\"flavor_text_entries\",",
+							"                 \"held_by_pokemon\",\"id\",\"machines\",\"name\",\"names\",\"sprites\"];",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Expect the first id to be returned\", function() {",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Body returned all main property\", function () {",
+							"    jsonArray.forEach(i => pm.expect(jsonData).to.have.property(i))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}item/:id",
+					"host": [
+						"{{url}}item"
+					],
+					"path": [
+						":id"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Locations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body returned at least 20 results\", function () {",
+							"    pm.expect(jsonData.results.length).to.eql(20);",
+							"});",
+							"",
+							"pm.test(\"Body returned name and url\", function () {",
+							"    jsonData.results.forEach(i => pm.expect(i).to.have.keys(\"name\",\"url\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}location",
+					"host": [
+						"{{url}}location"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Locations id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var jsonArray = [\"areas\",\"game_indices\",\"id\",\"name\",\"names\",\"region\"];",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Expect the first id to be returned\", function() {",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Body returned all main property\", function () {",
+							"    jsonArray.forEach(i => pm.expect(jsonData).to.have.property(i))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}location/:id",
+					"host": [
+						"{{url}}location"
+					],
+					"path": [
+						":id"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Machines",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body returned at least 20 results\", function () {",
+							"    pm.expect(jsonData.results.length).to.eql(20);",
+							"});",
+							"",
+							"pm.test(\"Body returned name and url\", function () {",
+							"    jsonData.results.forEach(i => pm.expect(i).to.have.key(\"url\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}machine",
+					"host": [
+						"{{url}}machine"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Machines id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var jsonArray = [\"id\",\"item\",\"move\",\"version_group\"];",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Expect the first id to be returned\", function() {",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Body returned all main property\", function () {",
+							"    jsonArray.forEach(i => pm.expect(jsonData).to.have.property(i))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}machine/:id",
+					"host": [
+						"{{url}}machine"
+					],
+					"path": [
+						":id"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Moves",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body returned at least 20 results\", function () {",
+							"    pm.expect(jsonData.results.length).to.eql(20);",
+							"});",
+							"",
+							"pm.test(\"Body returned name and url\", function () {",
+							"    jsonData.results.forEach(i => pm.expect(i).to.have.keys(\"name\",\"url\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}move",
+					"host": [
+						"{{url}}move"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Moves id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var jsonArray = [\"accuracy\",\"contest_combos\",\"contest_effect\",\"contest_type\",\"damage_class\",",
+							"                 \"effect_chance\",\"effect_changes\",\"effect_entries\",\"flavor_text_entries\",",
+							"                 \"id\",\"machines\",\"meta\",\"name\",\"names\",\"past_values\",\"power\",\"pp\",\"priority\",",
+							"                 \"stat_changes\",\"super_contest_effect\",\"target\",\"type\"];",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Expect the first id to be returned\", function() {",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Body returned all main property\", function () {",
+							"    jsonArray.forEach(i => pm.expect(jsonData).to.have.property(i))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}move/:id",
+					"host": [
+						"{{url}}move"
+					],
+					"path": [
+						":id"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Utility",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body returned at least 12 results\", function () {",
+							"    pm.expect(jsonData.results.length).to.eql(12);",
+							"});",
+							"",
+							"pm.test(\"Body returned name and url\", function () {",
+							"    jsonData.results.forEach(i => pm.expect(i).to.have.keys(\"name\",\"url\"));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}language",
+					"host": [
+						"{{url}}language"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Utility id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "636dd620-c613-4d4d-9d48-04cb9c43be3d",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"var jsonArray = [\"id\",\"iso3166\",\"iso639\",\"name\",\"names\",\"official\"];",
+							"",
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Expect the first id to be returned\", function() {",
+							"    pm.expect(jsonData.id).to.eql(1);",
+							"});",
+							"",
+							"pm.test(\"Body returned all main property\", function () {",
+							"    jsonArray.forEach(i => pm.expect(jsonData).to.have.property(i))",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c7d006e2-2b21-4649-8f69-65f64ddd0ac0",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}language/:id",
+					"host": [
+						"{{url}}language"
+					],
+					"path": [
+						":id"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
 						}
 					]
 				}
@@ -152,6 +1605,14 @@
 					""
 				]
 			}
+		}
+	],
+	"variable": [
+		{
+			"id": "f284e293-1368-43e7-9bce-913e8e14129e",
+			"key": "url",
+			"value": "",
+			"type": "string"
 		}
 	]
 }
