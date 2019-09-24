@@ -8,8 +8,8 @@ API Tests:​ PokeAPI
     Pokémon, their moves, abilities, types, egg groups, etc.
 
  *2) Project Scope*
- 
-    Get responses on:
+
+    GET responses on:
 
      Berries
      Contests
@@ -22,21 +22,30 @@ API Tests:​ PokeAPI
      Moves
      Pokemon
 
-     Implemented:
-     GET response on Pokemon
-     GET Pokemon By id
-
  *3) Tecnologies*
 
     Postman/Newman
     javascript
-    Docker
-    Jenkins
+    Docker/Jenkins
 
 *4) Run test:*
 
     instal docker-compose
     clone the following url: https://github.com/jehcriss42/PokeAPITest.git
-    run sudo docker-compose up
+    run docker-compose up
     Access localhost:8080
+    On jenkins:
     Run: PokeAPITest
+
+    OR
+ 
+    Download the "PokeApiTest.postman_collection.json" collection
+    install postman
+    import and run with postman
+
+    OR 
+
+    Download the "PokeApiTest.postman_collection.json" collection
+    install newman and run:
+    newman run PokeApiTest.postman_collection.json
+   
