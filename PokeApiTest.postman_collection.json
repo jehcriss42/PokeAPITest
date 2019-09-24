@@ -49,9 +49,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}berry",
+					"raw": "https://pokeapi.co/api/v2/berry",
 					"host": [
-						"{{url}}berry"
+						"https://pokeapi.co/api/v2/berry"
 					],
 					"query": [
 						{
@@ -110,9 +110,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}berry/:id",
+					"raw": "https://pokeapi.co/api/v2/berry/:id",
 					"host": [
-						"{{url}}berry"
+						"https://pokeapi.co/api/v2/berry"
 					],
 					"path": [
 						":id"
@@ -127,7 +127,8 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"type": "string"
 						}
 					]
 				}
@@ -184,9 +185,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}berry/:name",
+					"raw": "https://pokeapi.co/api/v2/berry/:name",
 					"host": [
-						"{{url}}berry"
+						"https://pokeapi.co/api/v2/berry"
 					],
 					"path": [
 						":name"
@@ -201,7 +202,8 @@
 					"variable": [
 						{
 							"key": "name",
-							"value": "cheri"
+							"value": "cheri",
+							"type": "string"
 						}
 					]
 				}
@@ -252,9 +254,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}pokemon",
+					"raw": "https://pokeapi.co/api/v2/pokemon",
 					"host": [
-						"{{url}}pokemon"
+						"https://pokeapi.co/api/v2/pokemon"
 					],
 					"query": [
 						{
@@ -315,9 +317,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}pokemon/:id",
+					"raw": "https://pokeapi.co/api/v2/pokemon/:id",
 					"host": [
-						"{{url}}pokemon"
+						"https://pokeapi.co/api/v2/pokemon"
 					],
 					"path": [
 						":id"
@@ -332,7 +334,8 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"type": "string"
 						}
 					]
 				}
@@ -403,9 +406,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}pokemon/:name",
+					"raw": "https://pokeapi.co/api/v2/pokemon/:name",
 					"host": [
-						"{{url}}pokemon"
+						"https://pokeapi.co/api/v2/pokemon"
 					],
 					"path": [
 						":name"
@@ -420,7 +423,8 @@
 					"variable": [
 						{
 							"key": "name",
-							"value": "bulbasaur"
+							"value": "bulbasaur",
+							"type": "string"
 						}
 					]
 				}
@@ -471,9 +475,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}contest-type",
+					"raw": "https://pokeapi.co/api/v2/contest-type",
 					"host": [
-						"{{url}}contest-type"
+						"https://pokeapi.co/api/v2/contest-type"
 					],
 					"query": [
 						{
@@ -531,9 +535,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}contest-type/:id",
+					"raw": "https://pokeapi.co/api/v2/contest-type/:id",
 					"host": [
-						"{{url}}contest-type"
+						"https://pokeapi.co/api/v2/contest-type"
 					],
 					"path": [
 						":id"
@@ -548,7 +552,8 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"type": "string"
 						}
 					]
 				}
@@ -599,9 +604,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}encounter-method",
+					"raw": "https://pokeapi.co/api/v2/encounter-method",
 					"host": [
-						"{{url}}encounter-method"
+						"https://pokeapi.co/api/v2/encounter-method"
 					],
 					"query": [
 						{
@@ -659,9 +664,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}encounter-method/:id",
+					"raw": "https://pokeapi.co/api/v2/encounter-method/:id",
 					"host": [
-						"{{url}}encounter-method"
+						"https://pokeapi.co/api/v2/encounter-method"
 					],
 					"path": [
 						":id"
@@ -676,7 +681,8 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"type": "string"
 						}
 					]
 				}
@@ -727,9 +733,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}evolution-chain",
+					"raw": "https://pokeapi.co/api/v2/evolution-chain",
 					"host": [
-						"{{url}}evolution-chain"
+						"https://pokeapi.co/api/v2/evolution-chain"
 					],
 					"query": [
 						{
@@ -787,9 +793,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}evolution-chain/:id",
+					"raw": "https://pokeapi.co/api/v2/evolution-chain/:id",
 					"host": [
-						"{{url}}evolution-chain"
+						"https://pokeapi.co/api/v2/evolution-chain"
 					],
 					"path": [
 						":id"
@@ -804,7 +810,8 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"type": "string"
 						}
 					]
 				}
@@ -855,9 +862,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}generation",
+					"raw": "https://pokeapi.co/api/v2/generation",
 					"host": [
-						"{{url}}generation"
+						"https://pokeapi.co/api/v2/generation"
 					],
 					"query": [
 						{
@@ -916,9 +923,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}generation/:id",
+					"raw": "https://pokeapi.co/api/v2/generation/:id",
 					"host": [
-						"{{url}}generation"
+						"https://pokeapi.co/api/v2/generation"
 					],
 					"path": [
 						":id"
@@ -933,7 +940,8 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"type": "string"
 						}
 					]
 				}
@@ -984,9 +992,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}item",
+					"raw": "https://pokeapi.co/api/v2/item",
 					"host": [
-						"{{url}}item"
+						"https://pokeapi.co/api/v2/item"
 					],
 					"query": [
 						{
@@ -1045,9 +1053,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}item/:id",
+					"raw": "https://pokeapi.co/api/v2/item/:id",
 					"host": [
-						"{{url}}item"
+						"https://pokeapi.co/api/v2/item"
 					],
 					"path": [
 						":id"
@@ -1062,7 +1070,8 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"type": "string"
 						}
 					]
 				}
@@ -1113,9 +1122,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}location",
+					"raw": "https://pokeapi.co/api/v2/location",
 					"host": [
-						"{{url}}location"
+						"https://pokeapi.co/api/v2/location"
 					],
 					"query": [
 						{
@@ -1173,9 +1182,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}location/:id",
+					"raw": "https://pokeapi.co/api/v2/location/:id",
 					"host": [
-						"{{url}}location"
+						"https://pokeapi.co/api/v2/location"
 					],
 					"path": [
 						":id"
@@ -1190,7 +1199,8 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"type": "string"
 						}
 					]
 				}
@@ -1241,9 +1251,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}machine",
+					"raw": "https://pokeapi.co/api/v2/machine",
 					"host": [
-						"{{url}}machine"
+						"https://pokeapi.co/api/v2/machine"
 					],
 					"query": [
 						{
@@ -1301,9 +1311,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}machine/:id",
+					"raw": "https://pokeapi.co/api/v2/machine/:id",
 					"host": [
-						"{{url}}machine"
+						"https://pokeapi.co/api/v2/machine"
 					],
 					"path": [
 						":id"
@@ -1318,7 +1328,8 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"type": "string"
 						}
 					]
 				}
@@ -1369,9 +1380,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}move",
+					"raw": "https://pokeapi.co/api/v2/move",
 					"host": [
-						"{{url}}move"
+						"https://pokeapi.co/api/v2/move"
 					],
 					"query": [
 						{
@@ -1432,9 +1443,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}move/:id",
+					"raw": "https://pokeapi.co/api/v2/move/:id",
 					"host": [
-						"{{url}}move"
+						"https://pokeapi.co/api/v2/move"
 					],
 					"path": [
 						":id"
@@ -1449,7 +1460,8 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"type": "string"
 						}
 					]
 				}
@@ -1500,9 +1512,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}language",
+					"raw": "https://pokeapi.co/api/v2/language",
 					"host": [
-						"{{url}}language"
+						"https://pokeapi.co/api/v2/language"
 					],
 					"query": [
 						{
@@ -1560,9 +1572,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{url}}language/:id",
+					"raw": "https://pokeapi.co/api/v2/language/:id",
 					"host": [
-						"{{url}}language"
+						"https://pokeapi.co/api/v2/language"
 					],
 					"path": [
 						":id"
@@ -1577,7 +1589,8 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"type": "string"
 						}
 					]
 				}
@@ -1609,7 +1622,7 @@
 	],
 	"variable": [
 		{
-			"id": "f284e293-1368-43e7-9bce-913e8e14129e",
+			"id": "e7d1e950-172f-42b5-a240-46ecd38a8343",
 			"key": "url",
 			"value": "",
 			"type": "string"
